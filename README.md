@@ -6,5 +6,5 @@ Execute game:-
         1) Binary maze
         2) End point
         3) All co-ordinates of shortest path
-    
-    The values of the maze size, start point, end point, can be changed in the maze_binary.py file
+
+The values of the maze size, start point, end point, can be changed in the maze_binary.py file
