@@ -1,4 +1,5 @@
 from random import shuffle, randrange
+from maze_backend import maze_end_Point
 from sys import setrecursionlimit
 setrecursionlimit(4000)
 
@@ -32,11 +33,11 @@ def make_maze(w = 3, h = 4):
 
     walk(randrange(w), randrange(h))
 
+    ver1 = maze_end_Point.find_end(ver1)
+    ver1[0][0] = 2
+
     print("The new binary maze is:")
     for i in ver1: print(i)
     print()
 
     return ver1
-
-# #Uncomment to test
-# mazelist = make_maze()

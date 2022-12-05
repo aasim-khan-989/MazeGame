@@ -7,12 +7,23 @@ by using the make_step function used in maze_end_point file.
 """
 from maze_backend import maze_end_Point
 
-def path(mazelist,end,start = (0,0)):
+def path(mazelist,start = (0,0)):
 
     """
     This fuction finds all the co-ordinates from the starting point and 
     and the ending point.
     """
+
+    def Initialisation(mazelist):
+      mazelist[0][0] = 0
+      for i in range(len(mazelist)):
+        for j in range(len(mazelist[0])):
+          if mazelist[i][j] == 3: 
+            mazelist[i][j] = 0
+            end = i,j
+            return mazelist, end
+
+    mazelist, end = Initialisation(mazelist)
 
     m = []
     for i in range(len(mazelist)):
@@ -49,12 +60,12 @@ def path(mazelist,end,start = (0,0)):
         the_path.append((i, j))
         k -= 1
 
-    print("The co-ordinates for the shortest path for the given start and end points are:\n", the_path)
-    return the_path
+    for i in the_path:
+      mazelist[i[0]][i[1]] = 4
+    mazelist[end[0]][end[1]] = 3
+    mazelist[start[0]][start[1]] = 2
 
-
-# #Uncomment to test
-# mazelist = [[0, 0, 0, 0, 0],[0, 1, 1, 1, 1],[0, 0, 0, 0, 0],[1, 1, 1, 1, 0],[0, 1, 0, 0, 0],[0, 1, 0, 1, 0],[0, 0, 0, 1, 0]]
-# start = 0, 0 #U can change the start point by giving different co-ordinates
-# end = 4,0
-# path(mazelist, end, start) #U can change the start and end points by giving different co-ordinates
+    print("The solution maze is:")
+    for i in mazelist: print(i)
+    
+    return mazelist

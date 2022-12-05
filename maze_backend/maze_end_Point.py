@@ -37,7 +37,7 @@ def make_step(mazelist,k,m,max_cord):
   else: return (False, max_cord)
 
 
-def find_end(a,start=(0,0)):
+def find_end(mazelist):
 
     """
     This function finds the farthest co-ordinate from start,
@@ -45,10 +45,11 @@ def find_end(a,start=(0,0)):
 
     """
 
+    start = 0,0
     m = []
-    for i in range(len(a)):
+    for i in range(len(mazelist)):
         m.append([])
-        for j in range(len(a[i])):
+        for j in range(len(mazelist[i])):
             m[-1].append(0)
     i,j = start
     m[i][j] = 1
@@ -57,12 +58,8 @@ def find_end(a,start=(0,0)):
     chk, max_cord = True, 0
     while chk == True:
         k += 1
-        chk, max_cord = make_step(a,k,m,max_cord)
-    
-    print("the farthest point from start(0,0) is:", max_cord)
-    return max_cord
+        chk, max_cord = make_step(mazelist,k,m,max_cord)
 
-# #Uncomment to test
-# mazelist = [[0, 0, 0, 0, 0],[0, 1, 1, 1, 1],[0, 0, 0, 0, 0],[1, 1, 1, 1, 0],[0, 1, 0, 0, 0],[0, 1, 0, 1, 0],[0, 0, 0, 1, 0]]
-# start = 0, 0 #U can change the start point by giving different co-ordinates
-# end = find_end(mazelist,start) 
+    mazelist[max_cord[0]][max_cord[1]] = 3
+
+    return mazelist
