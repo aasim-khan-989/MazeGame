@@ -1,6 +1,10 @@
 from pygame import *
+from maze_backend import maze_gen
+from maze_backend import maze_path
 
-import random as rd
+
+mcode = maze_gen.make_maze(5, 6)
+Binary_code = mcode
 
 int()
 
@@ -14,6 +18,8 @@ wall = image.load("wall.png")
 exit = image.load("exit.png")
 bg = image.load("interface.jpg")
 bg = transform.scale(bg, (700, 700)).convert_alpha()
+
+
 def maze(Binary_code):
     y = 120
     for l in Binary_code:
@@ -31,18 +37,6 @@ def maze(Binary_code):
 
         y += 45
 
-
-Binary_code = [[0, 0, 0, 0, 0, 0, 0, 1, 0],
-               [0, 2, 1, 0, 1, 0, 0, 1, 0],
-               [0, 0, 1, 1, 1, 0, 0, 0, 0],
-               [0, 0, 0, 1, 1, 0, 0, 1, 0],
-               [0, 0, 0, 1, 1, 1, 1, 1, 0],
-               [0, 0, 1, 1, 1, 0, 0, 1, 0],
-               [0, 0, 0, 1, 1, 1, 0, 1, 0],
-               [0, 0, 0, 1, 1, 0, 0, 0, 0],
-               [0, 0, 3, 1, 1, 1, 0, 1, 0],
-               [0, 0, 0, 1, 1, 0, 0, 1, 0],
-               ]
 
 
 playing = True
