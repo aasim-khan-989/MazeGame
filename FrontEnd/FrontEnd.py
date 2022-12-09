@@ -2,13 +2,11 @@ from pygame import *
 from maze_backend import maze_gen
 from maze_backend import maze_path
 
-
-mcode = maze_gen.make_maze(5, 6)
-Binary_code = mcode
+ans = maze_gen.make_maze(15, 8)
 
 int()
 
-interface = display.set_mode((700, 700))
+interface = display.set_mode((1500, 850))
 display.set_caption("Maze-Craze")
 logo = image.load("maze.png")
 display.set_icon(logo)
@@ -17,27 +15,30 @@ way = image.load("way.png")
 wall = image.load("wall.png")
 exit = image.load("exit.png")
 bg = image.load("interface.jpg")
-bg = transform.scale(bg, (700, 700)).convert_alpha()
+bg = transform.scale(bg, (1500, 850)).convert_alpha()
+pathimg = image.load("path.png")
+
+playerimg = image.load("player.png")
 
 
 def maze(Binary_code):
-    y = 120
+    y = 80
     for l in Binary_code:
         for i in range(len(l)):
             x = (45 * i)
             if l[i] == 0:
-                interface.blit(way, (x + 120, y))
-
+                interface.blit(way, (x + 150, y))
             elif l[i] == 1:
-                interface.blit(wall, (x + 120, y))
+                interface.blit(wall, (x + 150, y))
+            elif l[i] == 2:
+                interface.blit(start, (x + 150, y))
+                interface.blit(playerimg, (x + 150, y + 5))
             elif l[i] == 3:
-                interface.blit(exit, (x + 120, y))
-            else:
-                interface.blit(start, (x + 120, y))
+                interface.blit(exit, (x + 150, y))
+            elif l[i] == 4:
+                interface.blit(pathimg, (x + 150, y))
 
         y += 45
-
-
 
 playing = True
 while playing:
@@ -46,7 +47,7 @@ while playing:
             playing = False
         interface.fill((255, 255, 255))
         interface.blit(bg, (0, 0))
-        maze(Binary_code)
+        maze(ans)
         display.update()
 
 if __name__ == '__main__':
